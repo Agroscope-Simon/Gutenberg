@@ -23,4 +23,16 @@ gutenberg_metadata %>%
     filter(str_detect(title, pattern = "Rumi" )) %>% 
   view()
 
-           
+
+
+# load data with title
+romeo <- gutenberg_works(title == "Romeo and Juliet") %>%
+  gutenberg_download(meta_fields = "title")
+
+# load data with ID
+romeo <- gutenberg_works(gutenberg_id == "1513") %>%
+  gutenberg_download(meta_fields = "gutenberg_id")
+
+# simultaneous downloads
+texts <- gutenberg_download(c(768, 1260), meta_fields = "title", 
+                            mirror = "http://mirrors.xmission.com/gutenberg/")
